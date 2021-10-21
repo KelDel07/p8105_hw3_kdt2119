@@ -215,3 +215,17 @@ tidy_accel_df = old_accel_data %>%
 ```
 
 The tidied dataset `tidy_accel_df` contains `r nrow(tidy_accel_df)` rows (or observations) and `r ncol(tidy_accel_df)` variables. The dataset has variables which include: `r colnames(tidy_accel_df)`
+
+## Daily total activity 
+
+The code below will aggregate across minutes to create a total activity variable for each day, and create a table showing these totals.
+
+```{r}
+total_activity = 
+  tidy_accel_df %>% 
+  group_by(day_id) %>% 
+  summarize(total_activity_counts = sum(activity_counts))
+knitr::kable(total_activity)
+```
+
+The total activity counts are does not have a distinct pattern, the counts fluctuate every couple of days. 
