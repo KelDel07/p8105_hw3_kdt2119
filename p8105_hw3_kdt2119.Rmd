@@ -23,7 +23,12 @@ data("instacart")
 ```
 
 Brief Description:
-Instacart is an American grocery delivery and pick up service company. The `instacart` dataset has data from the year 2017. There are `r nrow(instacart)` observations and `r ncol(instacart)` variables. In this dataset, the the total number of data points `r nrow(instacart)*ncol(instacart)`. There are some key variables in this dataset including `r colnames(instacart)`.
+
+Instacart is an American grocery delivery and pick up service company. 
+
+The `instacart` dataset has data from the year 2017. There are `r nrow(instacart)` observations and `r ncol(instacart)` variables. 
+
+In this dataset, the the total number of data points is `r nrow(instacart)*ncol(instacart)`. There are some key variables in this dataset including `r colnames(instacart)`.
 
 ## Total number of aisles and aisles from which the most items are ordered
 
@@ -54,3 +59,31 @@ instacart %>%
     caption = "Data from instacart limited to aisles with more than 10,000 items ordered"
   )
 ```
+
+## Table showing three most popular items in selected aisles 
+The code below  produces a table showing the three most popular items in each of the aisles “baking ingredients”, “dog food care”, and “packaged vegetables fruits”,with information on the number of items ordered.
+
+```{r aisles_table}
+instacart %>%
+  filter(aisle == "baking ingredients" | 
+           aisle == "dog food care" | 
+           aisle == "packaged vegetables fruits") %>%
+ count(aisle, product_name) %>%
+  arrange(desc(n)) %>%
+  group_by(aisle) %>%
+  slice(1:3) %>%
+  arrange(desc(n)) %>%
+  group_by(aisle) %>%
+  knitr::kable(caption = "Three Most Ordered Items Per Aisle")
+```
+
+From the table, `organic baby spinach`, `organic raspberries`, and `organic blueberries` 
+are the three most ordered items from the `packaged vegetables fruits` aisle. 
+
+Also, `light brown sugar`, `pure baking soda`, and `cane sugar` are the three most ordered items from the `baking ingredients` aisle. 
+
+The three most ordered items from the `dog food care` aisle are `snack sticks chicken & rice recipe dog treats`, `organix chicken & brown rice recipe`, and `small dog biscuits`.
+
+
+### 2x7 table showing the mean hour of the day at which Pink Lady Apples and Coffee Ice Cream are ordered on each day of the week.
+
