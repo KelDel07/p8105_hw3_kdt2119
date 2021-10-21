@@ -13,9 +13,23 @@ library(readr)
 ```
 
 # Question 1 
+
+Below, we will explore the instacart dataset
+
 ```{r}
 data("instacart")
 ```
 
-Description:
+Brief Description:
 Instacart is an American grocery delivery and pick up service company. The `instacart` dataset has data from the year 2017. There are `r nrow(instacart)` observations and `r ncol(instacart)` variables. In this dataset, the the total number of data points `r nrow(instacart)*ncol(instacart)`. There are some key variables in this dataset including `r colnames(instacart)`.
+
+## Total number of aisles and aisles from which the most items are ordered
+
+The code below will tell us how many aisles there are, and from which aisles the most items are ordered.
+
+```{r, message = FALSE, warning = FALSE}
+instacart %>% 
+	count(aisle) %>% 
+	arrange(desc(n))
+```
+There are a total 134 `aisles`. The aisles from which the most items are ordered are `fresh vegetables`, `fresh fruits`, and followed by `packaged vegetables fruits`. 
