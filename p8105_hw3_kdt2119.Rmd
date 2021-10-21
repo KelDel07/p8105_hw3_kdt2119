@@ -61,6 +61,7 @@ instacart %>%
 ```
 
 ## Table showing three most popular items in selected aisles 
+
 The code below  produces a table showing the three most popular items in each of the aisles “baking ingredients”, “dog food care”, and “packaged vegetables fruits”,with information on the number of items ordered.
 
 ```{r aisles_table}
