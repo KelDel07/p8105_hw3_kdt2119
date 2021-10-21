@@ -167,7 +167,7 @@ Excellent_df %>%
   ggplot(aes(x = year, y = avg_data_value)) +
   geom_line(aes(group = locationabbr, color = locationabbr)) +
   labs(
-    title = "Average data value over time for statess",
+    title = "Average data value over time for states",
     x = "Year",
     y = "Average Data Value") +
   guides(col = guide_legend("State")) +
@@ -192,3 +192,26 @@ ggplot(brfss_panels, aes(x = response, y = data_value, fill = response)) +
     caption = "Data from the brfss dataset"
   )
 ```
+
+# Question 3 
+
+```{r}
+old_accel_data = read_csv("./accel_data.csv")
+```
+
+The code below will load, tidy, and otherwise wrangle the data. The final dataset produced will include all originally observed variables and values; have useful variable names; include a weekday vs weekend variable; and encode data with reasonable variable classes. 
+
+```{r}
+tidy_accel_df = old_accel_data %>% 
+  pivot_longer(
+    cols = activity.1:activity.1440,
+    names_to = "activity_number",
+    values_to = "activity_counts",
+    names_prefix = "activity.",
+  ) %>% 
+  mutate(
+    is_weekend = (day == "Saturday" | day == "Sunday")
+    )
+```
+
+The tidied dataset `tidy_accel_df` contains `r nrow(tidy_accel_df)` rows (or observations) and `r ncol(tidy_accel_df)` variables. The dataset has variables which include: `r colnames(tidy_accel_df)`
