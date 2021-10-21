@@ -173,3 +173,22 @@ Excellent_df %>%
   guides(col = guide_legend("State")) +
   theme(legend.position = "right")
 ```
+
+## 2006/2010 Two-panel Plot of data_value distribution for Poor to Excellent responses in NY State location
+
+The code below will make a two-panel plot showing, for the years 2006, and 2010, distribution of data_value for responses (“Poor” to “Excellent”) among locations in NY State.
+
+```{r panels}
+brfss_panels = brfss_cleaned_version %>% 
+  filter(year %in% c(2006,2010),
+  state == "NY") 
+ggplot(brfss_panels, aes(x = response, y = data_value, fill = response)) + 
+  geom_boxplot() + 
+  facet_grid(. ~ year) +
+  labs(
+    title = "Distribution of data_value for responses in NY",
+    x = "Response",
+    y = "data_value",
+    caption = "Data from the brfss dataset"
+  )
+```
