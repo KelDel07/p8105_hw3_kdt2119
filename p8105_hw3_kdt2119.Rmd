@@ -102,6 +102,7 @@ The three most ordered items from the `dog food care` aisle are `snack sticks ch
 Generally, `Pink Lady Apples` are ordered earlier in the day than `Coffee Ice Cream`.
 
 # Question 2
+
 The code below will clean the `brfss_smart2010` data: formatting it to use appropriate variable names, 
 focusing on the `Overall Health` topic, and only including factored responses ordered from`Poor` to `Excellent`.
 
@@ -115,3 +116,34 @@ brfss_cleaned_version = brfss_smart2010 %>%
   filter(response %in% c("Excellent", "Very good", "Good", "Fair", "Poor")) %>%
   separate(locationdesc, into = c('state', 'location'), sep = ' - ')
 ```
+
+## 2002: States observed at 7 or more locations
+
+The code below will provide information on which states were observed at 7 or more locations in 2002.
+
+```{r states2002}
+states_2002 = brfss_cleaned_version %>% 
+  filter(year == "2002") %>% 
+  group_by(state) %>% 
+  distinct(location) %>% 
+  count(state) %>% 
+  filter(n >= 7) %>% 
+  select(state)
+```
+
+## 2010: States observed at 7 or more locations
+
+The code below will provide information on which states were observed at 7 or more locations in 2002.
+
+```{r states2010}
+states_2010 = brfss_cleaned_version %>% 
+  filter(year == "2010") %>% 
+  group_by(state) %>% 
+  distinct(location) %>% 
+  count(state) %>% 
+  filter(n >= 7) %>% 
+  select(state)
+```
+
+In 2002, the states that were observed at 7 or more locations were `r states_2002$state`. 
+In 2010, the states that were observed at 7 or more locations were `r states_2010$state`.
