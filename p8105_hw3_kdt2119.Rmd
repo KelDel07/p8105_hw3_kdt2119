@@ -12,10 +12,10 @@ library(janitor)
 library(readr)
 ```
 
-## Question 1 
+# Question 1 
 ```{r}
 data("instacart")
 ```
 
-Description: 
-Instacart is an American company that operates in grocery delivery and pick up services. The `instacart` dataset contains data from 2017. It has `r nrow(instacart)` observations and `r ncol(instacart)` variables. The total number of data points in this dataset is `r nrow(instacart)*ncol(instacart)`. The key variables in this dataset include `r colnames(instacart)`. 
+Description:
+Instacart is an American grocery delivery and pick up service company. The `instacart` dataset has data from the year 2017. There are `r nrow(instacart)` observations and `r ncol(instacart)` variables. In this dataset, the the total number of data points `r nrow(instacart)*ncol(instacart)`. There are some key variables in this dataset including `r colnames(instacart)`.
